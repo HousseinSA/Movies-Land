@@ -1,15 +1,17 @@
-import {useEffect, useState} from "react"
-import {Link, NavLink, useNavigate, useLocation } from "react-router-dom"
+import { useEffect, useState} from "react"
+import {Link, NavLink, useNavigate, useLocation} from "react-router-dom"
 import {FaMoon, FaSun} from "react-icons/fa"
 export const Header = ({changing, changingValue, location}) => {
+  // state to hide the nav bar of show it
   const [hidden, setHidden] = useState(true)
   const [darkMode, setDarkMode] = useState(
+    // theme changing
     JSON.parse(localStorage.getItem("theme")) || false
   )
-
+  // react-router hooks to change path and know it
   const navigate = useNavigate()
   const {pathname} = useLocation()
-
+  // useEffect ot store theme in localstorage and change add class or remove it in html page and changing body background according to the theme.
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(darkMode))
     if (darkMode) {
@@ -20,6 +22,12 @@ export const Header = ({changing, changingValue, location}) => {
       document.body.style = "background: white"
     }
   }, [darkMode])
+  // useEffect to
+  useEffect(() => {
+    if (changingValue) {
+      navigate(pathname)
+    }
+  }, [pathname, changingValue])
   //  handeling the state of the bropdown menu of tv shows
   const [showMenu, setShowMenu] = useState(false)
   function handelTVMenu() {
@@ -27,9 +35,7 @@ export const Header = ({changing, changingValue, location}) => {
   }
   function handelSubmit(e) {
     e.preventDefault()
-    const search = e.target.search.value
-    navigate(`/search?q=${search}`)
-    e.target.reset()
+    changing("")
   }
   useEffect(() => {
     if (changingValue === "") return
@@ -38,8 +44,16 @@ export const Header = ({changing, changingValue, location}) => {
   useEffect(() => {
     if (pathname === "/shows/popular" || pathname === "/shows/top-rated") {
       location(pathname)
+    } else if (
+      pathname === "/movies/top-rated" ||
+      pathname === "/movies/popular" ||
+      pathname === "/movies/upcoming" ||
+      pathname === "/"
+    ) {
+      location(pathname)
     }
-  }, [pathname])
+    changing("")
+  }, [pathname, location , changing])
   const acitve =
     "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
   const inActive =
@@ -112,6 +126,7 @@ export const Header = ({changing, changingValue, location}) => {
                   className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search... "
                   autoComplete="off"
+                  value={changingValue}
                   onChange={(e) => changing(e.target.value)}
                 />
               </form>

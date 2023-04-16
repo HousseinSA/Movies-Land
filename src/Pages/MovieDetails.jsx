@@ -30,7 +30,6 @@ export const MovieDetails = ({api}) => {
     return number.toString()
   }
 
-  console.log(MovieData)
   const ImageUrl = MovieData.poster_path
     ? ` https://image.tmdb.org/t/p/w500/${MovieData.poster_path}`
     : Backup
@@ -48,6 +47,13 @@ export const MovieDetails = ({api}) => {
                   <img className="rounded" src={notFound} alt="movie" />
                 </Link>
               </div>
+              <div className="title-change:my-5 my-3">
+                <Link to={"/"}>
+                  <button className=" px-4 py-2.5 text-black text-xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 dark:text-white rounded-lg">
+                    Go Back
+                  </button>
+                </Link>
+              </div>
             </div>
           ) : (
             <>
@@ -56,7 +62,6 @@ export const MovieDetails = ({api}) => {
                   <img className="rounded" src={ImageUrl} alt="movie" />
                 </Link>
               </div>
-
               <div className="max-w-lg dark:text-white title-change:text-center mt-4 lg:mt-20">
                 <h5 className="text-xl font-bold ">
                   {MovieData.name ? MovieData.name : MovieData.title}

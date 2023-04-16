@@ -13,7 +13,7 @@ export default function App() {
         changingValue={changingSearch}
         location={setLocation}
       />
-      <AllRoutes location={location} changing={changingSearch} />
+      <AllRoutes location={location} />
       <Footer />
     </div>
   )

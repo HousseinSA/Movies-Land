@@ -1,6 +1,6 @@
 import {MovieDetails, MovieList, Search, NotFound, TvShow} from "../Pages"
 import {Routes, Route} from "react-router-dom"
-export const AllRoutes = ({location, changing}) => {
+export const AllRoutes = ({location}) => {
   return (
     <div className="dark:bg-slate-800">
       <Routes>
@@ -32,7 +32,6 @@ export const AllRoutes = ({location, changing}) => {
             <Search
               api={`search/movie`}
               location={location}
-              changing={changing}
             />
           }
         />
