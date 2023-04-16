@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © 2023
-          <Link to={"/"} className="hover:underline m-2">
+          <Link to={"/"} className="hover:underline m-2" rel={"noreferrer"}>
             MoviesLand
           </Link>
           All Rights Reserved.
@@ -16,7 +16,8 @@ export const Footer = () => {
             <Link
               to="https://github.com/housseinsa"
               target="_blank"
-              className="mr-4 hover:underline md:mr-6 ">
+              className="mr-4 hover:underline md:mr-6 "
+              rel="noreferrer">
               GitHub
             </Link>
           </li>
@@ -24,6 +25,7 @@ export const Footer = () => {
             <Link
               to="https://linkden.com/housseinsa"
               target="_blank"
+              rel="norefereer"
               className="mr-4 hover:underlin
               e md:mr-6">
               Linkden
@@ -33,6 +35,7 @@ export const Footer = () => {
             <Link
               to="https://instagram.com/houssein11"
               target="_blank"
+              rel="norefereer"
               className="mr-4 hover:underline md:mr-6">
               instagram
             </Link>

@@ -1,14 +1,11 @@
-import React from "react"
 import {useFetch, useTitle} from "../hooks"
 import {useSearchParams} from "react-router-dom"
 import {Card} from "../Components"
-export const Search = ({api, location}) => {
+export const Search = ({api, location , changing}) => {
   const [searchParmas] = useSearchParams()
   const querySearch = searchParmas.get("q")
-  const {MovieData} = useFetch(api, querySearch, location)
+  const {MovieData, loading} = useFetch(api, querySearch, location , changing)
   useTitle(`Search: ${querySearch}`)
-console.log(location)
-  console.log(MovieData)
   return (
     <main>
       <section>
@@ -22,7 +19,9 @@ console.log(location)
       </section>
       <section className="max-w-7xl m-auto">
         <div className="flex gap-3 justify-center flex-wrap">
+          {loading && <h3>Loading...</h3>}
           {MovieData &&
+            !loading &&
             MovieData.map((movie) => {
               return <Card key={movie.id} movie={movie} location={location} />
             })}

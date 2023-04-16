@@ -3,10 +3,8 @@ import Backup from "../assets/backup image.jpg"
 export const Card = ({movie, path, location}) => {
   const {id, title, name, overview, poster_path: image} = movie
   const ImageUrl = image ? ` https://image.tmdb.org/t/p/w500/${image}` : Backup
-
   const searchPath = () => {
     if (
-  
       location === "/shows/upcoming" ||
       location === "/shows/popular"
     ) {

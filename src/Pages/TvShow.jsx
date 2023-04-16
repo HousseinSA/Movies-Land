@@ -1,12 +1,8 @@
 import {useTitle, useFetch} from "../hooks"
 import {Card} from "../Components"
-import {useSearchParams} from "react-router-dom"
 export const TvShow = ({api, title}) => {
-  const [searchSerie] = useSearchParams()
-  searchSerie.get("q")
   //  api fetch hook
   const {MovieData: serieData} = useFetch(api)
-  console.log(serieData)
   // title hook
   useTitle(title)
   return (

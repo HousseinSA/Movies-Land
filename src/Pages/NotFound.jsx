@@ -16,7 +16,7 @@ export const NotFound = () => {
             alt="page not found"
           />
         </div>
-        <div className="ml-10">
+        <div className="ml-10  title-change:my-5 ">
           <Link to={"/"}>
             <button className=" px-4 py-2.5 text-black text-xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 dark:text-white rounded-lg">
               Go Back

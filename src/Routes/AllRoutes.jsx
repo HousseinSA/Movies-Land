@@ -1,6 +1,6 @@
 import {MovieDetails, MovieList, Search, NotFound, TvShow} from "../Pages"
 import {Routes, Route} from "react-router-dom"
-export const AllRoutes = ({location}) => {
+export const AllRoutes = ({location, changing}) => {
   return (
     <div className="dark:bg-slate-800">
       <Routes>
@@ -28,7 +28,13 @@ export const AllRoutes = ({location}) => {
         />
         <Route
           path="/search"
-          element={<Search api={`search/movie`} location={location} />}
+          element={
+            <Search
+              api={`search/movie`}
+              location={location}
+              changing={changing}
+            />
+          }
         />
         <Route
           path="/movies/upcoming"

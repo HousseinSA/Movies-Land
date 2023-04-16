@@ -1,14 +1,15 @@
 import {useEffect, useState} from "react"
-import {Link, NavLink, useLocation} from "react-router-dom"
+import {Link, NavLink, useNavigate, useLocation } from "react-router-dom"
 import {FaMoon, FaSun} from "react-icons/fa"
-import {useNavigate} from "react-router-dom"
-export const Header = ({location}) => {
+export const Header = ({changing, changingValue, location}) => {
   const [hidden, setHidden] = useState(true)
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("theme")) || false
   )
+
   const navigate = useNavigate()
   const {pathname} = useLocation()
+
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(darkMode))
     if (darkMode) {
@@ -24,15 +25,21 @@ export const Header = ({location}) => {
   function handelTVMenu() {
     setShowMenu(!showMenu)
   }
-
-  function handleSubmit(e) {
+  function handelSubmit(e) {
     e.preventDefault()
-    const searchQuery = e.target.search.value
-    navigate(`/search?q=${searchQuery}`)
+    const search = e.target.search.value
+    navigate(`/search?q=${search}`)
     e.target.reset()
-    setHidden(!hidden)
-    location(pathname)
   }
+  useEffect(() => {
+    if (changingValue === "") return
+    navigate(`/search?q=${changingValue}`)
+  }, [changingValue])
+  useEffect(() => {
+    if (pathname === "/shows/popular" || pathname === "/shows/top-rated") {
+      location(pathname)
+    }
+  }, [pathname])
   const acitve =
     "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
   const inActive =
@@ -97,7 +104,7 @@ export const Header = ({location}) => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handelSubmit}>
                 <input
                   type="text"
                   id="search-navbar"
@@ -105,6 +112,7 @@ export const Header = ({location}) => {
                   className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search... "
                   autoComplete="off"
+                  onChange={(e) => changing(e.target.value)}
                 />
               </form>
             </div>
@@ -129,7 +137,6 @@ export const Header = ({location}) => {
               </svg>
             </button>
           </div>
-
           <div
             className={`${
               hidden ? "hidden" : ""
@@ -149,13 +156,14 @@ export const Header = ({location}) => {
                     clipRule="evenodd"></path>
                 </svg>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handelSubmit}>
                 <input
                   type="text"
                   id="s-navbar"
                   name="search"
                   className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search..."
+                  onChange={(e) => changing(e.target.value)}
                 />
               </form>
             </div>
