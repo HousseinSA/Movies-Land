@@ -14,7 +14,7 @@ export const Footer = () => {
         <ul className="flex flex-wrap gap-2 items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
             <Link
-              to="https://github.com/housseinsa"
+              to="https://github.com/HousseinSA"
               target="_blank"
               className="mr-4 hover:underline md:mr-6 "
               rel="noreferrer">
@@ -23,7 +23,7 @@ export const Footer = () => {
           </li>
           <li>
             <Link
-              to="https://linkden.com/housseinsa"
+              to="https://linkden.com/in/housseinsa"
               target="_blank"
               rel="norefereer"
               className="mr-4 hover:underlin
@@ -41,11 +41,7 @@ export const Footer = () => {
               instagram
             </Link>
           </li>
-          <li>
-            <Link to="#" className="hover:underline">
-              Go
-            </Link>
-          </li>
+         
         </ul>
       </div>
     </footer>

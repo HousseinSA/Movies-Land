@@ -1,4 +1,7 @@
 import {useState, useEffect, useCallback} from "react"
+import dotevn from "dotenv"
+dotevn.config()
+console.log(process.env.API_KEY)
 export const useFetch = (api, querySearch = "", location) => {
   const [MovieData, setMovieData] = useState([])
   const [error, setError] = useState()
